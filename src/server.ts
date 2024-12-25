@@ -2,14 +2,14 @@
 * @Author: Luis Starlino
 * @Date: 2024-12-24 07:20
 *****************************************************************************************/
+
 // ===== IMPORTS
-import express, { Request, Response } from 'express';
+import express, { json, Request, Response } from 'express';
+import createApp from './app';
 
-const app = express();
+// ===== CONSTS
+const app = createApp();
+const port = process.env.PORT;
 
-app.get("/", (req: Request, resp: Response)=> {
 
-    resp.send({message: "Hello World!"})
-})
-
-app.listen(3000)
+app.listen(port, () => console.log(`✅ Server on at port http://localhost:${port} ✅`));
