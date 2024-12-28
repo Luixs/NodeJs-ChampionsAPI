@@ -3,11 +3,8 @@
 * @Date: 2024-12-28 14:20
 *****************************************************************************************/
 
-//TODO: REMOVE INTERFACE FROM HERE AND CREATE A UNIQUE FILE FOR THIS PART
-interface PlayerModel {
-    id: number;
-    name: string;
-}
+// ===== IMPORTS
+import { PlayerModel } from "../models";
 
 const dummyData: PlayerModel[] = [
     {
