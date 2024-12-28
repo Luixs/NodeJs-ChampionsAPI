@@ -4,7 +4,6 @@
 *****************************************************************************************/
 
 // ===== IMPORTS
-import express, { json, Request, Response } from 'express';
 import createApp from './app';
 
 // ===== CONSTS

@@ -4,7 +4,8 @@
 *****************************************************************************************/
 
 // ===== IMPORTS
-import express, { json, Request, Response } from 'express';
+import { playersRoutes } from './routes';
+import express, { json } from 'express';
 
 export default function createApp() {
 
@@ -14,10 +15,8 @@ export default function createApp() {
     // ===== MIDDLEWARE
     app.use(json());
 
-    // TODO: REMOVE ROUTE AND CREATE A CONTROLLER
-    app.get("/", (req: Request, resp: Response) => {
-        resp.status(200).json({ message: "Hello World!" })
-    })
+    // ===== ROUTES
+    app.use('/api/v1', playersRoutes);
 
     return app;
 
