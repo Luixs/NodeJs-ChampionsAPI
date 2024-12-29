@@ -265,8 +265,16 @@ export const findPlayerById = async (id: number): Promise<PlayerModel | null> =>
     return dummyData.find(p => p.id === id) ?? null;
 }
 
-export const insertPlayer = async (player: PlayerModel) : Promise<boolean> => {
-
+export const insertPlayer = async (player: PlayerModel): Promise<boolean> => {
     dummyData.push(player);
     return true;
+}
+
+export const deleteOnePlayer = async (id: number) :  Promise<boolean>  => {
+    const index = dummyData.findIndex(p => p.id === id);
+
+    if (index !== -1) {
+        dummyData.splice(index, 1);
+        return true;
+    } else return false
 }

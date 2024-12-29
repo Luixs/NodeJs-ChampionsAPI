@@ -43,8 +43,22 @@ const postPlayer = async (req: Request, resp: Response) => {
 
 }
 
+const deletePlayerById = async (req: Request, resp: Response) => {
+
+    // ===== Get params
+    const { id } = req.params;
+
+    // ===== delete player
+    const httpResp = await playersService.deletePlayer(parseInt(id));
+
+    // ===== Return
+    resp.status(httpResp.statusCode).json(httpResp.body);
+
+}
+
 export default {
     getPlayers,
     postPlayer,
-    getPlayerById
+    getPlayerById,
+    deletePlayerById
 };

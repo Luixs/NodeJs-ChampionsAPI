@@ -49,14 +49,35 @@ const createPlayer = async (body: PlayerModel) => {
         // ===== INSERT PLAYER
         let playerInsert = await playersRepository.insertPlayer(body);
 
-        return await httpHelper.Created(playerInsert);
+        resp = await httpHelper.Created(playerInsert);
     } catch (error) {
         // TODO: CREATE A 500 ERROR HELPER
-        return await httpHelper.BadRequest();
+        resp = await httpHelper.BadRequest();
     }
+
+    return resp;
 }
+
+const deletePlayer = async (id: number) => {
+    let resp = null;
+    try {
+
+        // ===== DELETE PLAYER
+        let isDeleted = await playersRepository.deleteOnePlayer(id);
+
+        if (isDeleted) resp = await httpHelper.OK(null);
+        else throw new Error("PLAYER NOT FOUND TO DELETE!");
+
+    } catch (error) {
+        resp = await httpHelper.BadRequest();
+    }
+
+    return resp;
+}
+
 export default {
     getPlayers,
     createPlayer,
-    getPlayerById
+    deletePlayer,
+    getPlayerById,
 }

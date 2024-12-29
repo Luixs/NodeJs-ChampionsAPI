@@ -14,5 +14,6 @@ const router = Router();
 router.get('/players', playersController.getPlayers);
 router.get('/players/:id', playersController.getPlayerById);
 router.post('/players', playersController.postPlayer);
+router.delete('/players/:id', playersController.deletePlayerById);
 
 export default router;
