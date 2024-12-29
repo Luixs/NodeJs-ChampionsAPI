@@ -19,7 +19,7 @@ const getPlayers = async (req: Request, resp: Response) => {
 
 const getPlayerById = async (req: Request, resp: Response) => {
 
-    // ==== Get params
+    // ===== Get params
     const { id } = req.params;
 
     // ===== Get data
@@ -30,7 +30,21 @@ const getPlayerById = async (req: Request, resp: Response) => {
 
 }
 
+const postPlayer = async (req: Request, resp: Response) => {
+
+    // ==== Get Values
+    const { body } = req;
+
+    // ===== send data
+    const httpResp = await playersService.createPlayer(body);
+
+    // ===== Return
+    resp.status(httpResp.statusCode).json(httpResp.body);
+
+}
+
 export default {
     getPlayers,
+    postPlayer,
     getPlayerById
 };

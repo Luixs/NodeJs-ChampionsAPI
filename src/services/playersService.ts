@@ -4,9 +4,9 @@
 *****************************************************************************************/
 
 // ===== IMPORTS
-import { BaseResponseAPI } from "../models";
-import * as playersRepository from "../repositories/playersRepository";
 import { httpHelper } from "../utils";
+import { BaseResponseAPI, PlayerModel } from "../models";
+import * as playersRepository from "../repositories/playersRepository";
 
 
 const getPlayers = async () => {
@@ -39,7 +39,24 @@ const getPlayerById = async (id: string) => {
     return resp;
 }
 
+const createPlayer = async (body: PlayerModel) => {
+    let resp = null;
+
+    try {
+
+        if (Object.keys(body).length == 0) throw new Error("NO BODY FOUND!");
+
+        // ===== INSERT PLAYER
+        let playerInsert = await playersRepository.insertPlayer(body);
+
+        return await httpHelper.Created(playerInsert);
+    } catch (error) {
+        // TODO: CREATE A 500 ERROR HELPER
+        return await httpHelper.BadRequest();
+    }
+}
 export default {
     getPlayers,
+    createPlayer,
     getPlayerById
 }

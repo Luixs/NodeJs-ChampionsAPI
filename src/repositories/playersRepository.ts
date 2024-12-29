@@ -264,3 +264,9 @@ export const findAllPlayers = async (): Promise<PlayerModel[]> => {
 export const findPlayerById = async (id: number): Promise<PlayerModel | null> => {
     return dummyData.find(p => p.id === id) ?? null;
 }
+
+export const insertPlayer = async (player: PlayerModel) : Promise<boolean> => {
+
+    dummyData.push(player);
+    return true;
+}
