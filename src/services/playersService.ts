@@ -4,6 +4,7 @@
 *****************************************************************************************/
 
 // ===== IMPORTS
+import { BaseResponseAPI } from "../models";
 import * as playersRepository from "../repositories/playersRepository";
 import { httpHelper } from "../utils";
 
@@ -14,17 +15,31 @@ const getPlayers = async () => {
     let resp = null;
 
     // ===== Handler
-    if(data) {
-        resp =  await httpHelper.OK(data);
+    if (data) {
+        resp = await httpHelper.OK(data);
     } else {
         resp = await httpHelper.NoContent();
     }
-    
-    
+
+    return resp;
+}
+
+const getPlayerById = async (id: string) => {
+
+    const data = await playersRepository.findPlayerById(parseInt(id));
+    let resp: BaseResponseAPI | null = null;
+
+    // ===== Handler
+    if (data) {
+        resp = await httpHelper.OK(data);
+    } else {
+        resp = await httpHelper.NoContent();
+    }
 
     return resp;
 }
 
 export default {
-    getPlayers
+    getPlayers,
+    getPlayerById
 }
