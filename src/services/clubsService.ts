@@ -24,6 +24,30 @@ const getClubs = async () => {
     return resp;
 }
 
+const getClubById = async (id: string) => {
+
+    let resp = null;
+
+    try {
+
+        // =====  GET DATA
+        const club = await clubsRepository.findClubById(parseInt(id));
+
+        if(club) {
+            resp = await httpHelper.OK(club);
+        } else {
+            resp = await httpHelper.NoContent();
+        }
+        
+    } catch (error) {
+        resp = await httpHelper.BadRequest(error?.toString());
+    }
+
+    return resp;
+
+}
+
 export default {
-    getClubs
+    getClubs,
+    getClubById
 }

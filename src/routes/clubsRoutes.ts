@@ -13,6 +13,7 @@ const router = Router();
 
 // ===== PLAYER ROUTES
 router.get('/clubs', clubsController.getClubs);
+router.get('/clubs/:id', clubsController.getClubById);
 
 
 export default router;
