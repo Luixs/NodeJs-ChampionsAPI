@@ -5,15 +5,17 @@
 
 // ===== IMPORTS
 import { ClubModel } from "../models";
+import fs from 'fs/promises';
 
 export const findAllClubs = async (): Promise<ClubModel[]> => {
     try {
-        return [
-            {
-                id: 1,
-                name: "Real Madrid"
-            }
-        ]
+        
+        // === Get data
+        const data = await fs.readFile('./src/data/clubs.json', "utf-8");
+        const clubs : ClubModel[] = JSON.parse(data);
+
+        return clubs;
+
     } catch (error) {
         return [];
     }
