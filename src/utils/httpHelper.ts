@@ -21,9 +21,9 @@ const NoContent = async (): Promise<BaseResponseAPI> => {
     }
 }
 
-const BadRequest = async (): Promise<BaseResponseAPI> => {
+const BadRequest = async (error?: any): Promise<BaseResponseAPI> => {
     return {
-        body: null,
+        body: error ?? null,
         statusCode: 400
     }
 }

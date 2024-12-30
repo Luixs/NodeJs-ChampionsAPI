@@ -12,7 +12,7 @@ export interface PlayerModel {
     statistics: PlayerStatistics;
 }
 
-interface PlayerStatistics {
+export interface PlayerStatistics {
     overall: number;
     pace: number;
     shooting: number;

@@ -7,6 +7,7 @@
 import { Request, Response } from 'express';
 import { playersService } from '../services';
 import { BaseResponseAPI } from '../models';
+import { PlayerStatistics } from '../models/playerModel';
 
 const getPlayers = async (req: Request, resp: Response) => {
 
@@ -56,9 +57,24 @@ const deletePlayerById = async (req: Request, resp: Response) => {
 
 }
 
+const updatePlayerById = async (req: Request, resp: Response) => {
+
+    // ===== Get params
+    const body : PlayerStatistics = req.body;
+    const { id } = req.params;
+
+    // ===== update player
+    const httpResp = await playersService.updatePlayer(parseInt(id), body);
+
+    // ===== Return
+    resp.status(httpResp.statusCode).json(httpResp.body);
+
+}
+
 export default {
     getPlayers,
     postPlayer,
     getPlayerById,
+    updatePlayerById,
     deletePlayerById
 };

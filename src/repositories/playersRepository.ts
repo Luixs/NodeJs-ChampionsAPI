@@ -5,6 +5,7 @@
 
 // ===== IMPORTS
 import { PlayerModel } from "../models";
+import { PlayerStatistics } from "../models/playerModel";
 
 const dummyData: PlayerModel[] = [
     {
@@ -270,11 +271,24 @@ export const insertPlayer = async (player: PlayerModel): Promise<boolean> => {
     return true;
 }
 
-export const deleteOnePlayer = async (id: number) :  Promise<boolean>  => {
+export const deleteOnePlayer = async (id: number): Promise<boolean> => {
     const index = dummyData.findIndex(p => p.id === id);
 
     if (index !== -1) {
         dummyData.splice(index, 1);
         return true;
     } else return false
+}
+
+export const updatePlayer = async (id: number, data: PlayerStatistics): Promise<PlayerModel | null> => {
+
+    // ===== FIND THE PLAYER
+    const index = dummyData.findIndex(p => p.id === id);
+    if (index == -1) return null;
+
+    // ===== UPDATE THE PLAYER DATA
+    dummyData[index].statistics = data;
+
+    return dummyData[index];
+
 }

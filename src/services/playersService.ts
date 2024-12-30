@@ -7,6 +7,7 @@
 import { httpHelper } from "../utils";
 import { BaseResponseAPI, PlayerModel } from "../models";
 import * as playersRepository from "../repositories/playersRepository";
+import { PlayerStatistics } from "../models/playerModel";
 
 
 const getPlayers = async () => {
@@ -69,6 +70,26 @@ const deletePlayer = async (id: number) => {
         else throw new Error("PLAYER NOT FOUND TO DELETE!");
 
     } catch (error) {
+        resp = await httpHelper.BadRequest(error?.toString());
+    }
+
+    return resp;
+}
+
+const updatePlayer = async (id: number, body: PlayerStatistics) => {
+
+    let resp = null;
+    try {
+
+        if (Object.keys(body).length == 0) throw new Error("NO BODY FOUND!");
+
+        // ===== UPDATE PLAYER
+        let isUpdated = await playersRepository.updatePlayer(id, body);
+
+        if (isUpdated) resp = await httpHelper.OK(isUpdated);
+        else throw new Error("PLAYER NOT FOUND TO UPDATE!");
+
+    } catch (error) {
         resp = await httpHelper.BadRequest();
     }
 
@@ -77,6 +98,7 @@ const deletePlayer = async (id: number) => {
 
 export default {
     getPlayers,
+    updatePlayer,
     createPlayer,
     deletePlayer,
     getPlayerById,
