@@ -4,7 +4,7 @@
 *****************************************************************************************/
 
 // ===== IMPORTS
-import { playersRoutes } from './routes';
+import { clubsRoutes, playersRoutes } from './routes';
 import express, { json } from 'express';
 
 export default function createApp() {
@@ -17,6 +17,7 @@ export default function createApp() {
 
     // ===== ROUTES
     app.use('/api/v1', playersRoutes);
+    app.use('/api/v1', clubsRoutes);
 
     return app;
 
