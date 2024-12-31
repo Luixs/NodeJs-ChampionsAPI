@@ -44,8 +44,36 @@ const postClub = async (req: Request, resp: Response) => {
 
 }
 
+const updateClub = async (req: Request, resp: Response) => {
+
+    // ==== Get Values
+    const { body } = req;
+    const { id } = req.params;
+
+    // ===== send data
+    const httpResp = await clubsService.updateClubById(id, body);
+
+    // ===== Return
+    resp.status(httpResp.statusCode).json(httpResp.body);
+
+}
+
+const deleteClub = async (req: Request, resp: Response) => {
+
+    // ==== Get Values
+    const { id } = req.params;
+
+    // ===== send data
+    const httpResp = await clubsService.deleteClubById(id);
+
+    // ===== Return
+    resp.status(httpResp.statusCode).json(httpResp.body);
+}
+
 export default {
     getClubs,
     postClub,
+    updateClub,
+    deleteClub,
     getClubById
 }

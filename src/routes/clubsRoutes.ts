@@ -15,6 +15,8 @@ const router = Router();
 router.get('/clubs', clubsController.getClubs);
 router.get('/clubs/:id', clubsController.getClubById);
 router.post('/clubs', clubsController.postClub);
+router.patch('/clubs/:id', clubsController.updateClub);
+router.delete('/clubs/:id', clubsController.deleteClub);
 
 
 export default router;
