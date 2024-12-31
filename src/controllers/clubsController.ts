@@ -29,10 +29,23 @@ const getClubById = async (req: Request, resp: Response) => {
     // ===== Return
     resp.status(httpResp.statusCode).json(httpResp.body);
 
+}
+
+const postClub = async (req: Request, resp: Response) => {
+
+    // ==== Get Values
+    const { body } = req;
+
+    // ===== send data
+    const httpResp = await clubsService.createClub(body);
+
+    // ===== Return
+    resp.status(httpResp.statusCode).json(httpResp.body);
 
 }
 
 export default {
     getClubs,
+    postClub,
     getClubById
 }

@@ -5,6 +5,7 @@
 
 // ===== IMPORTS
 import { httpHelper } from "../utils";
+import { BaseResponseAPI, ClubModel } from "../models";
 import * as clubsRepository from "../repositories/clubsRepository";
 
 
@@ -33,12 +34,12 @@ const getClubById = async (id: string) => {
         // =====  GET DATA
         const club = await clubsRepository.findClubById(parseInt(id));
 
-        if(club) {
+        if (club) {
             resp = await httpHelper.OK(club);
         } else {
             resp = await httpHelper.NoContent();
         }
-        
+
     } catch (error) {
         resp = await httpHelper.BadRequest(error?.toString());
     }
@@ -47,7 +48,29 @@ const getClubById = async (id: string) => {
 
 }
 
+const createClub = async (content: ClubModel): Promise<BaseResponseAPI> => {
+
+    let resp = null;
+    try {
+        // ===== CHECK CONTENT
+        let keys = Object.keys(content);
+        if(keys.length == 0 || !keys.includes("name")) throw new Error("NO CONTENT ON THIS REQUEST. PLEASE, SEE THE OFICIAL DOCUMENTATION!");
+
+        // ===== SAVE NEW CLUB
+        let newClub = await clubsRepository.createNewClub(content);
+        if(newClub == null) throw new Error("INTERNAL SERVER ERROR - CAN'T SAVE A NEW CLUB IN THIS MOMENT");
+
+        // ===== RETURN
+        resp = httpHelper.Created(newClub);
+    } catch (error) {
+        resp = httpHelper.BadRequest(error?.toString());
+    }
+
+    return resp;
+}
+
 export default {
     getClubs,
+    createClub,
     getClubById
 }
