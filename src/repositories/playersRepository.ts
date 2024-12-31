@@ -4,258 +4,17 @@
 *****************************************************************************************/
 
 // ===== IMPORTS
+import fs from 'fs/promises';
 import { PlayerModel } from "../models";
+import { CHAMPIONS_CONSTANTS } from "../utils";
 import { PlayerStatistics } from "../models/playerModel";
-
-const dummyData: PlayerModel[] = [
-    {
-        "id": 1,
-        "name": "Lionel Messi",
-        "nationality": "Argentina",
-        "position": "Forward",
-        "club": "Paris Saint-Germain",
-        "statistics": {
-            "overall": 92,
-            "pace": 85,
-            "shooting": 90,
-            "passing": 91,
-            "dribbling": 95,
-            "defending": 38,
-            "physical": 65
-        }
-    },
-    {
-        "id": 2,
-        "name": "Cristiano Ronaldo",
-        "nationality": "Portugal",
-        "position": "Forward",
-        "club": "Al-Nassr",
-        "statistics": {
-            "overall": 91,
-            "pace": 87,
-            "shooting": 93,
-            "passing": 82,
-            "dribbling": 88,
-            "defending": 35,
-            "physical": 75
-        }
-    },
-    {
-        "id": 3,
-        "name": "Kylian Mbappé",
-        "nationality": "France",
-        "position": "Forward",
-        "club": "Paris Saint-Germain",
-        "statistics": {
-            "overall": 93,
-            "pace": 97,
-            "shooting": 89,
-            "passing": 80,
-            "dribbling": 92,
-            "defending": 42,
-            "physical": 76
-        }
-    },
-    {
-        "id": 4,
-        "name": "Kevin De Bruyne",
-        "nationality": "Belgium",
-        "position": "Midfielder",
-        "club": "Manchester City",
-        "statistics": {
-            "overall": 91,
-            "pace": 76,
-            "shooting": 86,
-            "passing": 94,
-            "dribbling": 88,
-            "defending": 64,
-            "physical": 74
-        }
-    },
-    {
-        "id": 5,
-        "name": "Robert Lewandowski",
-        "nationality": "Poland",
-        "position": "Forward",
-        "club": "Barcelona",
-        "statistics": {
-            "overall": 92,
-            "pace": 78,
-            "shooting": 94,
-            "passing": 80,
-            "dribbling": 86,
-            "defending": 45,
-            "physical": 82
-        }
-    },
-    {
-        "id": 6,
-        "name": "Erling Haaland",
-        "nationality": "Norway",
-        "position": "Forward",
-        "club": "Manchester City",
-        "statistics": {
-            "overall": 90,
-            "pace": 89,
-            "shooting": 92,
-            "passing": 75,
-            "dribbling": 84,
-            "defending": 42,
-            "physical": 88
-        }
-    },
-    {
-        "id": 7,
-        "name": "Virgil van Dijk",
-        "nationality": "Netherlands",
-        "position": "Defender",
-        "club": "Liverpool",
-        "statistics": {
-            "overall": 91,
-            "pace": 81,
-            "shooting": 60,
-            "passing": 71,
-            "dribbling": 72,
-            "defending": 92,
-            "physical": 86
-        }
-    },
-    {
-        "id": 8,
-        "name": "Karim Benzema",
-        "nationality": "France",
-        "position": "Forward",
-        "club": "Al-Ittihad",
-        "statistics": {
-            "overall": 91,
-            "pace": 80,
-            "shooting": 88,
-            "passing": 83,
-            "dribbling": 90,
-            "defending": 41,
-            "physical": 78
-        }
-    },
-    {
-        "id": 9,
-        "name": "Luka Modrić",
-        "nationality": "Croatia",
-        "position": "Midfielder",
-        "club": "Real Madrid",
-        "statistics": {
-            "overall": 88,
-            "pace": 72,
-            "shooting": 75,
-            "passing": 91,
-            "dribbling": 90,
-            "defending": 72,
-            "physical": 66
-        }
-    },
-    {
-        "id": 10,
-        "name": "Joshua Kimmich",
-        "nationality": "Germany",
-        "position": "Midfielder",
-        "club": "Bayern Munich",
-        "statistics": {
-            "overall": 89,
-            "pace": 74,
-            "shooting": 72,
-            "passing": 91,
-            "dribbling": 84,
-            "defending": 83,
-            "physical": 77
-        }
-    },
-    {
-        "id": 11,
-        "name": "Neymar Jr.",
-        "nationality": "Brazil",
-        "position": "Forward",
-        "club": "Al-Hilal",
-        "statistics": {
-            "overall": 91,
-            "pace": 87,
-            "shooting": 85,
-            "passing": 87,
-            "dribbling": 94,
-            "defending": 36,
-            "physical": 62
-        }
-    },
-    {
-        "id": 12,
-        "name": "Jan Oblak",
-        "nationality": "Slovenia",
-        "position": "Goalkeeper",
-        "club": "Atlético Madrid",
-        "statistics": {
-            "overall": 89,
-            "pace": 0,
-            "shooting": 0,
-            "passing": 50,
-            "dribbling": 45,
-            "defending": 18,
-            "physical": 70
-        }
-    },
-    {
-        "id": 13,
-        "name": "Mohamed Salah",
-        "nationality": "Egypt",
-        "position": "Forward",
-        "club": "Liverpool",
-        "statistics": {
-            "overall": 90,
-            "pace": 93,
-            "shooting": 87,
-            "passing": 81,
-            "dribbling": 89,
-            "defending": 45,
-            "physical": 75
-        }
-    },
-    {
-        "id": 14,
-        "name": "Casemiro",
-        "nationality": "Brazil",
-        "position": "Midfielder",
-        "club": "Manchester United",
-        "statistics": {
-            "overall": 89,
-            "pace": 65,
-            "shooting": 70,
-            "passing": 78,
-            "dribbling": 75,
-            "defending": 90,
-            "physical": 89
-        }
-    },
-    {
-        "id": 15,
-        "name": "Marc-André ter Stegen",
-        "nationality": "Germany",
-        "position": "Goalkeeper",
-        "club": "Barcelona",
-        "statistics": {
-            "overall": 89,
-            "pace": 0,
-            "shooting": 0,
-            "passing": 52,
-            "dribbling": 48,
-            "defending": 18,
-            "physical": 70
-        }
-    }
-];
-
 
 
 export const findAllPlayers = async (): Promise<PlayerModel[]> => {
 
     try {
-        return dummyData;
+        const players = await getDataFromJson()
+        return players;
     } catch (error) {
         return [];
     }
@@ -263,32 +22,109 @@ export const findAllPlayers = async (): Promise<PlayerModel[]> => {
 }
 
 export const findPlayerById = async (id: number): Promise<PlayerModel | null> => {
-    return dummyData.find(p => p.id === id) ?? null;
+
+    //return dummyData.find(p => p.id === id) ?? null;
+    try {
+        // ===== GET ALL
+        const players = await getDataFromJson();
+        return players.find(p => p.id === id) ?? null;
+
+    } catch (error) {
+        return null;
+    }
+
+
 }
 
 export const insertPlayer = async (player: PlayerModel): Promise<boolean> => {
-    dummyData.push(player);
-    return true;
+
+    try {
+
+        // ===== GET CURRENT LIST
+        const players = await getDataFromJson();
+
+        // ===== ADDING NEW PLAYER
+        players.push({
+            ...player,
+            id: (players[players.length - 1].id + 1),
+        });
+
+        // ===== SAVE IN JSON
+        await saveNewDataIntoJson(players);
+
+        return true;
+
+    } catch (error) {
+        return false;
+    }
+
 }
 
 export const deleteOnePlayer = async (id: number): Promise<boolean> => {
-    const index = dummyData.findIndex(p => p.id === id);
 
-    if (index !== -1) {
-        dummyData.splice(index, 1);
+    try {
+
+        // ===== GET CURRENT LIST
+        const players = await getDataFromJson();
+        const findPlayerIndex = players.findIndex(p => p.id === id);
+
+        if (findPlayerIndex === - 1) throw new Error("NOT FOUND PLAYER")
+
+        players.splice(findPlayerIndex, 1);
+
+        // ===== SAVE AFTER REMOVE
+        await saveNewDataIntoJson(players);
+
         return true;
-    } else return false
+
+    } catch (error) {
+        return false;
+    }
+
 }
 
 export const updatePlayer = async (id: number, data: PlayerStatistics): Promise<PlayerModel | null> => {
 
-    // ===== FIND THE PLAYER
-    const index = dummyData.findIndex(p => p.id === id);
-    if (index == -1) return null;
+    // ===== GET CURRENT LIST
+    const players = await getDataFromJson();
+    const findPlayerIndex = players.findIndex(p => p.id === id);
 
-    // ===== UPDATE THE PLAYER DATA
-    dummyData[index].statistics = data;
+    if (findPlayerIndex === - 1) throw new Error("NOT FOUND PLAYER")
 
-    return dummyData[index];
+    // ===== UPDATE DATA
+    players[findPlayerIndex] = {
+        ...players[findPlayerIndex],
+        statistics: data
+    }
 
+    // ===== SAVE NEW LIST
+    await saveNewDataIntoJson(players);
+    
+    return players[findPlayerIndex];
+
+}
+
+// ===== INTERNAL FUNCTIONS
+async function getDataFromJson(): Promise<PlayerModel[]> {
+    try {
+        var file = await fs.readFile(CHAMPIONS_CONSTANTS.paths.players, "utf-8");
+        const players: PlayerModel[] = JSON.parse(file);
+
+        return players;
+    } catch (error) {
+        return [];
+    }
+}
+
+async function saveNewDataIntoJson(players: PlayerModel[]): Promise<Boolean> {
+    try {
+
+        // ===== SAVING NEW LIST
+        await fs.writeFile(CHAMPIONS_CONSTANTS.paths.players, JSON.stringify(players, null, 4), "utf-8");
+
+        return true;
+
+    } catch (error) {
+        return false;
+    }
 }
