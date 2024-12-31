@@ -1,81 +1,135 @@
-<div align="center">
+# 🏆 Champions League API ⚽️
 
-  <img src="./.github/assets/blue-saiyan-bg.png" alt="Logo" height="200">
-  <h1 align="center"><strong>NODE BOILERPLATE - BLUE EDITION</strong></h1>
-  <p align="center">
-	  Don't start a new Node project from zero!<br> Use this simple <b>Nodejs</b> boilerplate with pre-configured <b>Typescript</b> in a modern way.
-  </p>
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white) ![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=flat)
 
-</div>
+---
 
-<br />
+## 🖊️ About
+The **Champions League API** is a **Simple API** built with **Express** and **TypeScript**. Its primary goal is to provide a fast and practical solution for simulating UEFA Champions League data, ideal for front-end projects and local testing. This API stands out by being lightweight and easy to configure, offering a fresh alternative to conventional mock APIs.
 
-  <!-- Badges -->
-<div align="center">
-  
-  [![TypeScript version][ts-badge]][typescript-5-4]
-  [![Node.js version][nodejs-badge]][nodejs]
+> Based on the "DIO" NodeJs course, by Felipão, with improvements implemented for a more automated dynamic system
 
-</div>
+---
 
-# 🚀 Technologies
+## 💻 Technologies Used
+- 🟢 **Node.js**: JavaScript runtime for back-end development.  
+- 🔹 **TypeScript**: A superset of JavaScript that adds static typing.  
+- ⚡ **Express**: A Web Framework for building APIs.  
+- 🌐 **CORS**: Support for cross-origin requests.  
 
-This code source was developed with the following items:
+---
 
-### 📦 Dependencies
+## 🚀 Features
+- Provides endpoints to access data about Champions League clubs and players.
+- Simulates a real API environment for integration with front-end applications.
+- Includes mock data for easy customization and use.
 
-- [typescript][typescript-npm] - Superset for application scale JavaScript development
-- [tsx][tsx-npm] - TypeScript Execute (tsx): Enable Node.js to run TypeScript
-- [tsup][tsup-npm] - Bundle your TypeScript library with no config, powered by esbuild
-- [@types/node][@types/node-npm] - type definitions for node
+---
 
-### 📄 Files
+## ⚙️ Installation and Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Luixs/NodeJs-ChampionsAPI
+   ```
 
-- `.gitignore` - Ignore folders like node_modules
-- `.env` - Enviroment variables
-- `tsconfig.json` - Typescript configure Options
+2. Navigate to the project directory:
+   ```bash
+   cd champions-league-api
+   ```
 
-### ⚡ Scripts
+3. Install dependencies:
+   ```bash
+   npm i
+   ```
 
-- `npm run dist`: Compiles TypeScript files to JavaScript in the dist directory.
-- `npm run start:dev`: Runs the server in development mode with environment variables loaded from the .env file.
-- `npm run start:watch`: Runs the server in development mode with support for automatic reload on file changes.
-- `npm run start:dist`: Compiles the project and runs the compiled version from the dist directory.
+4. Start the server:
+   ```bash
+   npm run start:watch
+   ```
 
-# 👨‍💻 How To Use
+By default, the server runs on **http://localhost:3333**.
 
-click in **[Use this template]** OR
+---
 
-To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v20+](https://nodejs.org/en/) + [NPM v10+](https://nodejs.org/en/) installed on your computer. From your command line:
+## 📡 API Endpoints
 
-```bash
-# Clone this repository
-$ git clone https://github.com/felipeAguiarCode/node-blue-boilerplate
+### Base URL: `http://localhost:3333`
 
-# Go into the repository
-$ cd node-blue-boilerplate
+### **1. Get All Clubs**
+**Endpoint:** `/api/clubs`  
+**Method:** `GET`  
 
-# Install dependencies
-$ npm install
+**Response:**
+```json
+{
+  "clubs": [
+    { "id": 1, "name": "Real Madrid" },
+    { "id": 2, "name": "Barcelona" },
+    { "id": 3, "name": "Manchester City" }
+  ]
+}
 ```
 
-## Author
+---
 
-| [<img src="https://avatars3.githubusercontent.com/u/37452836?s=96&v=4"><br><sub>Felipe Aguiar</sub>](https://github.com/felipeAguiarCode) |
-| :---------------------------------------------------------------------------------------------------------------------------------------: |
-|                                            [Linkedin](www.linkedin.com/in/felipe-aguiar-exe/)                                             |
+### **2. Get Club by ID**
+**Endpoint:** `/api/clubs/:id`  
+**Method:** `GET`  
 
-# Credits
+**Parameters:**
+- `id` (number): ID of the club to retrieve.
 
-icons by [Pino Lamanna][dribble-icon]
+**Responses:**
+- **Success (200):**
+  ```json
+  {
+    "club": { "id": 1, "name": "Real Madrid" }
+  }
+  ```
 
-[typescript]: https://www.typescriptlang.org/
-[typescript-5-4]: https://www.typescriptlang.org/
-[ts-badge]: https://img.shields.io/badge/TypeScript-5.4-blue.svg
-[nodejs-badge]: https://img.shields.io/badge/Node.js->=%2020.00-blue.svg
-[nodejs]: https://nodejs.org/
-[dribble-icon]: https://dribbble.com/Schakalwal
-[typescript-npm]: https://www.npmjs.com/package/typescript
-[tsx-npm]: https://www.npmjs.com/package/tsx
-[tsup-npm]: https://www.npmjs.com/package/tsup
-[@types/node-npm]: https://www.npmjs.com/package/@types/node
+---
+
+### **3. Add a New Club**
+**Endpoint:** `/api/clubs`  
+**Method:** `POST`  
+
+**Payload:**
+```json
+{
+  "id": 4,
+  "name": "Paris Saint-Germain"
+}
+```
+
+**Responses:**
+- **Success (201):**
+  ```json
+  {
+    "club": { "id": 4, "name": "Paris Saint-Germain" }
+  }
+  ```
+---
+
+### **4. Update Club**
+**Endpoint:** `/api/clubs/:id`  
+**Method:** `PATCH`  
+
+**Payload:**
+```json
+{
+  "name": "PSG"
+}
+```
+
+**Response:**
+- **Success (200):**
+  ```json
+  {
+    "club": { "id": 4, "name": "PSG" }
+  }
+  ```
+---
+
+### **5. Delete Club**
+**Endpoint:** `/api/clubs/:id`  
+**Method:** `DELETE`  
