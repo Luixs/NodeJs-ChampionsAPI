@@ -6,7 +6,6 @@
 // ===== IMPORTS
 import { Request, Response } from 'express';
 import { playersService } from '../services';
-import { BaseResponseAPI } from '../models';
 import { PlayerStatistics } from '../models/playerModel';
 
 const getPlayers = async (req: Request, resp: Response) => {

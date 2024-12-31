@@ -1,0 +1,130 @@
+[
+    {
+        "id": 1,
+        "name": "Real Madrid"
+    },
+    {
+        "id": 2,
+        "name": "Barcelona"
+    },
+    {
+        "id": 3,
+        "name": "Manchester City"
+    },
+    {
+        "id": 4,
+        "name": "Bayern Munich"
+    },
+    {
+        "id": 5,
+        "name": "Paris Saint-Germain"
+    },
+    {
+        "id": 6,
+        "name": "Inter Milan"
+    },
+    {
+        "id": 7,
+        "name": "AC Milan"
+    },
+    {
+        "id": 8,
+        "name": "Napoli"
+    },
+    {
+        "id": 9,
+        "name": "Manchester United"
+    },
+    {
+        "id": 10,
+        "name": "Arsenal"
+    },
+    {
+        "id": 11,
+        "name": "Chelsea"
+    },
+    {
+        "id": 12,
+        "name": "Tottenham Hotspur"
+    },
+    {
+        "id": 13,
+        "name": "Atletico Madrid"
+    },
+    {
+        "id": 14,
+        "name": "Sevilla"
+    },
+    {
+        "id": 15,
+        "name": "Borussia Dortmund"
+    },
+    {
+        "id": 16,
+        "name": "RB Leipzig"
+    },
+    {
+        "id": 17,
+        "name": "Porto"
+    },
+    {
+        "id": 18,
+        "name": "Benfica"
+    },
+    {
+        "id": 19,
+        "name": "Sporting CP"
+    },
+    {
+        "id": 20,
+        "name": "Ajax"
+    },
+    {
+        "id": 21,
+        "name": "PSV Eindhoven"
+    },
+    {
+        "id": 22,
+        "name": "Galatasaray"
+    },
+    {
+        "id": 23,
+        "name": "Celtic"
+    },
+    {
+        "id": 24,
+        "name": "Rangers"
+    },
+    {
+        "id": 25,
+        "name": "Shakhtar Donetsk"
+    },
+    {
+        "id": 26,
+        "name": "Union Berlin"
+    },
+    {
+        "id": 27,
+        "name": "Lens"
+    },
+    {
+        "id": 28,
+        "name": "Lazio"
+    },
+    {
+        "id": 29,
+        "name": "Braga"
+    },
+    {
+        "id": 30,
+        "name": "Newcastle United"
+    },
+    {
+        "id": 31,
+        "name": "Red Star Belgrade"
+    },
+    {
+        "id": 32,
+        "name": "FC Copenhagen"
+    }
+]
